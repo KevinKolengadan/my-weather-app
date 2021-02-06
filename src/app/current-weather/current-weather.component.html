@@ -1,1 +1,29 @@
-<p>current-weather works!</p>
+<div *ngIf="{geocode: geocode$ | async, weather: weather$ | async} as data">
+
+  <div class="container" >
+    <div class="right-side">
+
+      <img [src]="'http://openweathermap.org/img/wn/' + data.weather.current.weather[0].icon + '@4x.png'">
+      <h1><b>{{data.geocode.locality}}</b>
+        <span class="normal">
+          <span *ngIf="data.geocode.locality && data.geocode.administrativeAreaLevel1">, </span>
+          {{data.geocode.administrativeAreaLevel1}}</span>
+      </h1>
+      <div *ngIf="hideLeftSide">
+        <div>
+          <span class="large">{{data.weather.current.temp}}°</span>
+          <div class="small">
+            <span class="capitalize">{{data.weather.current.weather[0].description}}</span> {{data.weather.daily[0].temp.min}}°/{{data.weather.daily[0].temp.max}}°</div>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="!hideLeftSide">
+      <div>
+        <span class="large">{{data.weather.current.temp}}°</span>
+        <img class="small-icon" [src]="'http://openweathermap.org/img/wn/' + data.weather.current.weather[0].icon + '@2x.png'">
+        <div class="small">
+          <span class="capitalize">{{data.weather.current.weather[0].description}}</span> {{data.weather.daily[0].temp.min}}°/{{data.weather.daily[0].temp.max}}°</div>
+      </div>
+    </div>
+  </div>
+</div>

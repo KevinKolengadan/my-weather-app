@@ -1,0 +1,27 @@
+.container {
+  display: grid;
+  grid-gap: 10px;
+  grid-template-columns: repeat(48,60px);
+  overflow-x: auto;
+  text-align: center;
+  margin: 0 20px;
+  padding: 10px 0;
+}
+
+.small-icon {
+  height: 40px;
+}
+
+@keyframes description-animation {
+  0% {
+    transform: translateX(30%);
+
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+.margin-5 {
+  padding: 0 5px;
+}

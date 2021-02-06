@@ -42,8 +42,8 @@ export class AppComponent implements OnInit{
           ]).subscribe(result => {
             if (result[0]) {
               const locationResult = result[0];
-              if (locationResult[0]?.results?.length > 0 && locationResult[0].results[0].address_components) {
-                const geocode = new Geocode(locationResult[0].results[0].address_components);
+              if (locationResult?.results?.length > 0 && locationResult.results[0].address_components) {
+                const geocode = new Geocode(locationResult.results[0].address_components);
                 this.store.dispatch({ type: SET_GEOCODE, payload: geocode});
               }
             }

@@ -1,6 +1,6 @@
 export interface Weather {
   current?: Day;
-  daily?: Day[];
+  daily?: Daily[];
   hourly?: Hourly[];
   minutely?: Minutely[];
   timezone?: string;

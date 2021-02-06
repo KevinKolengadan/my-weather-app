@@ -1,0 +1,40 @@
+h1 {
+  font-weight: normal;
+  text-transform: uppercase;
+}
+
+.container {
+  font-size: 1.5rem;
+  min-height: 50vh;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(400px,1fr));
+  margin: 0 30px;
+  div {
+    align-self: center;
+  }
+}
+.large {
+  font-size: 2rem;
+}
+.small {
+  font-size: 1.2rem;
+}
+.normal {
+  font-size: 1.5rem;
+}
+.capitalize {
+  text-transform: capitalize;
+}
+.small-icon {
+  height: 40px;
+}
+.right-side {
+  display: grid;
+  text-align: center;
+  img {
+    place-self: center;
+  }
+  h1 {
+    margin: 0px;
+  }
+}

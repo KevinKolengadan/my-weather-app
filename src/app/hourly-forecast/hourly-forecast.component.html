@@ -1,1 +1,17 @@
-<p>hourly-forecast works!</p>
+<div class="container" *ngIf="weather$ | async as weather">
+  <div *ngFor="let hour of weather.hourly">
+    <div class="margin-5">
+      <div>
+        {{getHour(hour.dt, weather.timezoneOffset)}}
+      </div>
+      <div>
+        <img class="small-icon" [src]="'http://openweathermap.org/img/wn/' + hour.weather[0].icon + '@2x.png'">
+      </div>
+      <div>
+        <div>
+          {{getRounded(hour.temp)}}°
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

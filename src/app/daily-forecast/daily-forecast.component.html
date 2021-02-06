@@ -1,1 +1,23 @@
-<p>daily-forecast works!</p>
+<div class="container" *ngIf="weather$ | async as weather">
+  <div *ngFor="let day of weather.daily">
+    <div class="margin-5">
+      <div class="padding-bottom-3">
+        {{getDay(day.dt, weather.timezoneOffset)}}
+      </div>
+      <div>
+        {{getDate(day.dt, weather.timezoneOffset)}}
+      </div>
+      <div>
+        <img class="small-icon" [src]="'http://openweathermap.org/img/wn/' + day.weather[0].icon + '@2x.png'">
+      </div>
+      <div class="description">
+        <div class="auto-scroll" *ngIf="day.weather[0].description.length>12">
+          {{day.weather[0].description}}
+        </div>
+        <div  *ngIf="day.weather[0].description.length<=12">
+          {{day.weather[0].description}}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
