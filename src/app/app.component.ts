@@ -1,11 +1,13 @@
 import {Component, OnInit} from '@angular/core';
 import {WeatherService} from './service/weather.service';
-import {Store} from '@ngrx/store';
+import {select, Store} from '@ngrx/store';
 import {SET_LOCATION} from './state/location-reducer';
 import {forkJoin} from 'rxjs';
 import {Geocode} from './model/geocode.model';
 import {SET_GEOCODE} from './state/geocode-reducer';
 import {SET_WEATHER} from './state/weather-reducer';
+import {selectHourSelection} from './state/app-selector';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-root',
@@ -13,11 +15,19 @@ import {SET_WEATHER} from './state/weather-reducer';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit{
+
+  hourSelection$ = this.store.pipe(select(selectHourSelection));
   title = 'my-weather-app';
   location: {
     lat: number,
     long: number
   };
+
+  colors = ['#10111D', '#111421', '#121724', '#131C2B', '#142132', '#152639',
+            '#193A55', '#25557C', '#316FA3', '#3D8ACA', '#4397DD', '#469EE7',
+            '#48A4F0', '#50A6ED', '#57A7E9', '#50A6ED', '#48A4F0', '#859889',
+            '#B49443', '#C3922B', '#3D3221', '#152639', '#121724', '#111421'
+  ];
 
   constructor(
     private weatherService: WeatherService,
@@ -29,7 +39,13 @@ export class AppComponent implements OnInit{
   ngOnInit(): void {
     this.getLocation();
   }
-
+  setBackground(hour: string): string {
+    if (!hour) {
+      hour = moment().format('H');
+    }
+    const index = Number(hour);
+    return this.colors[index];
+  }
   getLocation(): void {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition((position: GeolocationPosition) => {

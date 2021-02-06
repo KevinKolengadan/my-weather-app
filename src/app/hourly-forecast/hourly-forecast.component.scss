@@ -1,7 +1,7 @@
 .container {
   display: grid;
   grid-gap: 10px;
-  grid-template-columns: repeat(48,60px);
+  grid-template-columns: repeat(24,60px);
   overflow-x: auto;
   text-align: center;
   margin: 0 20px;
@@ -24,4 +24,8 @@
 
 .margin-5 {
   padding: 0 5px;
+}
+
+.clickable {
+  cursor: pointer;
 }

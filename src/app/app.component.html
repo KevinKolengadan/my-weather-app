@@ -1,4 +1,4 @@
-<section>
+<section *ngIf="hourSelection$ | async as hour" [style.background]="setBackground(hour)">
   <div class="container">
     <app-current-weather></app-current-weather>
     <app-daily-forecast></app-daily-forecast>

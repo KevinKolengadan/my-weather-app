@@ -1,39 +1,39 @@
-<div class="container" *ngIf="weather$ | async as weather">
-  <div class="box" *ngIf="weather.daily[0].pop">
+<div class="container" *ngIf="{weather: weather$ | async, index: dateSelection$ | async} as data">
+  <div class="box" *ngIf="data.weather.daily[data.index].pop">
     <div class="heading">Probability of precipitation</div>
-    <div>{{utilityService.getRoundValue(weather.daily[0].pop*100)}} %</div>
+    <div>{{utilityService.getRoundValue(data.weather.daily[data.index].pop*100)}} %</div>
   </div>
-  <div class="box" *ngIf="weather.daily[0].rain">
+  <div class="box" *ngIf="data.weather.daily[data.index].rain">
     <div class="heading">Precipitation</div>
-    <div>{{utilityService.getRoundValue(weather.daily[0].rain)}} mm</div>
+    <div>{{utilityService.getRoundValue(data.weather.daily[data.index].rain)}} mm</div>
   </div>
-  <div class="box" *ngIf="weather.daily[0].humidity">
+  <div class="box" *ngIf="data.weather.daily[data.index].humidity">
     <div class="heading">Humidity</div>
-    <div>{{utilityService.getRoundValue(weather.daily[0].humidity)}} %</div>
+    <div>{{utilityService.getRoundValue(data.weather.daily[data.index].humidity)}} %</div>
   </div>
-  <div class="box" *ngIf="weather.daily[0].wind_speed">
+  <div class="box" *ngIf="data.weather.daily[data.index].wind_speed">
     <div class="heading">Wind</div>
-    <div>{{utilityService.getRoundValue(weather.daily[0].wind_speed)}} m/s</div>
+    <div>{{utilityService.getRoundValue(data.weather.daily[data.index].wind_speed)}} m/s</div>
   </div>
-  <div class="box" *ngIf="weather.daily[0].uvi">
+  <div class="box" *ngIf="data.weather.daily[data.index].uvi">
     <div class="heading">UV</div>
-    <div>{{utilityService.getUVIValue(weather.daily[0].uvi)}}</div>
+    <div>{{utilityService.getUVIValue(data.weather.daily[data.index].uvi)}}</div>
   </div>
-  <div class="box" *ngIf="weather.daily[0].sunrise">
+  <div class="box" *ngIf="data.weather.daily[data.index].sunrise">
     <div class="heading">Sunrise</div>
-    <div>{{utilityService.gettime(weather.daily[0].sunrise)}}</div>
+    <div>{{utilityService.gettime(data.weather.daily[data.index].sunrise)}}</div>
   </div>
-  <div class="box" *ngIf="weather.daily[0].sunset">
+  <div class="box" *ngIf="data.weather.daily[data.index].sunset">
     <div class="heading">Sunset</div>
-    <div>{{utilityService.gettime(weather.daily[0].sunset)}}</div>
+    <div>{{utilityService.gettime(data.weather.daily[data.index].sunset)}}</div>
   </div>
-  <div class="box" *ngIf="weather.daily[0].pressure">
+  <div class="box" *ngIf="data.weather.daily[data.index].pressure">
     <div class="heading">Pressure</div>
-    <div>{{weather.daily[0].pressure}} hPa</div>
+    <div>{{data.weather.daily[data.index].pressure}} hPa</div>
   </div>
-  <div class="box" *ngIf="weather.daily[0].dew_point">
+  <div class="box" *ngIf="data.weather.daily[data.index].dew_point">
     <div class="heading">Atmospheric Temperature</div>
-    <div>{{weather.daily[0].dew_point}} °</div>
+    <div>{{data.weather.daily[data.index].dew_point}} °</div>
   </div>
 
 </div>

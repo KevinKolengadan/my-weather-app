@@ -1,6 +1,6 @@
 <div class="container" *ngIf="weather$ | async as weather">
-  <div *ngFor="let hour of weather.hourly">
-    <div class="margin-5">
+  <div class="clickable" *ngFor="let hour of weather.hourly; let i = index" (click)="selectHour(hour.dt)">
+    <div class="margin-5" *ngIf="i<24">
       <div>
         {{utilityService.getHour(hour.dt)}}
       </div>

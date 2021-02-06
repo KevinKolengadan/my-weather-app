@@ -12,6 +12,7 @@ import {weatherReducer} from './state/weather-reducer';
 import {HttpClientModule} from '@angular/common/http';
 import {geocodeReducer} from './state/geocode-reducer';
 import {dateSelectionReducer} from './state/date-seleection-reducer';
+import {hourSelectionReducer} from './state/hour-selection-reducer';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import {dateSelectionReducer} from './state/date-seleection-reducer';
       loc: locationReducer,
       weather: weatherReducer,
       dateSelection: dateSelectionReducer,
+      hourSelection: hourSelectionReducer,
       geocode: geocodeReducer
     })
   ],

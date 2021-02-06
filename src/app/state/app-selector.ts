@@ -9,9 +9,11 @@ export interface AppState {
   weather: Weather;
   geocode: Geocode;
   dateSelection: number;
+  hourSelection: string;
 }
 
 export const selectWeather = (state: AppState) => state.weather;
 export const selectLocation = (state: AppState) => state.loc;
 export const selectGeocode = (state: AppState) => state.geocode;
 export const selectDateSelection = (state: AppState) => state.dateSelection;
+export const selectHourSelection = (state: AppState) => state.hourSelection;

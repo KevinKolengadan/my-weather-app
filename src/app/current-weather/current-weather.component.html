@@ -2,7 +2,7 @@
 
   <div class="container" *ngIf="data.weather">
     <div class="right-side">
-      <img [src]="'http://openweathermap.org/img/wn/' + data.weather.daily[data.index].weather[0].icon + '@4x.png'">
+      <img [src]="'http://openweathermap.org/img/wn/' + data.weather?.daily[data.index]?.weather[0].icon + '@4x.png'">
       <h1><b>{{data.geocode.locality}}</b>
         <span class="normal">
           <span *ngIf="data.geocode.locality && data.geocode.administrativeAreaLevel1">, </span>
