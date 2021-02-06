@@ -13,6 +13,7 @@ import {HttpClientModule} from '@angular/common/http';
 import {geocodeReducer} from './state/geocode-reducer';
 import {dateSelectionReducer} from './state/date-seleection-reducer';
 import {hourSelectionReducer} from './state/hour-selection-reducer';
+import {ChartsModule} from 'ng2-charts';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import {hourSelectionReducer} from './state/hour-selection-reducer';
   imports: [
     BrowserModule,
     HttpClientModule,
+    ChartsModule,
     StoreModule.forRoot({
       loc: locationReducer,
       weather: weatherReducer,
@@ -37,3 +39,4 @@ import {hourSelectionReducer} from './state/hour-selection-reducer';
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+

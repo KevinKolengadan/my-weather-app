@@ -20,4 +20,15 @@
       </div>
     </div>
   </div>
+  <div class="height-100" *ngIf="weather.daily">
+    <canvas baseChart width="960" height="150"
+            [datasets]="lineChartData$ | async"
+            [labels]="lineChartLabels$ | async"
+            [options]="lineChartOptions"
+            [colors]="lineChartColors"
+            [legend]="lineChartLegend"
+            [chartType]="lineChartType"
+            [plugins]="lineChartPlugins">
+    </canvas>
+  </div>
 </div>
