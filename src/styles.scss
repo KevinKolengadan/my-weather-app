@@ -41,6 +41,9 @@
 
 }
 
+::-webkit-scrollbar:hover, ::-webkit-scrollbar-thumb:hover {
+  cursor: pointer;
+}
 ::-webkit-scrollbar {
   width: 0;
   height: 0;

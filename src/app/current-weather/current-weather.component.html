@@ -1,8 +1,8 @@
 <div *ngIf="{geocode: geocode$ | async, weather: weather$ | async, index: dateSelection$ | async} as data">
 
-  <div class="container" *ngIf="data.weather">
+  <div class="container" *ngIf="data.weather.daily">
     <div class="right-side">
-      <img [src]="'http://openweathermap.org/img/wn/' + data.weather?.daily[data.index]?.weather[0].icon + '@4x.png'">
+      <img [src]="getUrl(data.weather, data.index, '@4x.png')">
       <h1><b>{{data.geocode.locality}}</b>
         <span class="normal">
           <span *ngIf="data.geocode.locality && data.geocode.administrativeAreaLevel1">, </span>
@@ -23,7 +23,7 @@
       <div>
           <span *ngIf="data.index==0" class="large">{{utilityService.getRoundValue(data.weather.current.temp)}}°</span>
         <span class="large" *ngIf="data.index!=0">{{utilityService.getDay(data.weather.daily[data.index].dt)}}, {{utilityService.getDate(data.weather.daily[data.index].dt)}}</span>
-        <img class="small-icon" [src]="'http://openweathermap.org/img/wn/' + data.weather.daily[data.index].weather[0].icon + '@2x.png'">
+        <img class="small-icon" [src]="getUrl(data.weather, data.index, '@2x.png')">
         <div class="small">
           <span class="capitalize">{{data.weather.daily[data.index].weather[0].description}}</span>
           {{utilityService.getRoundValue(data.weather.daily[data.index].temp.min)}}°/

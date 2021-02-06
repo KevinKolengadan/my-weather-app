@@ -23,6 +23,7 @@ export class AppComponent implements OnInit{
     long: number
   };
 
+  // 24 gradients created for the day color animation
   colors = ['#10111D', '#111421', '#121724', '#131C2B', '#142132', '#152639',
             '#193A55', '#25557C', '#316FA3', '#3D8ACA', '#4397DD', '#469EE7',
             '#48A4F0', '#50A6ED', '#57A7E9', '#50A6ED', '#48A4F0', '#859889',
@@ -51,24 +52,30 @@ export class AppComponent implements OnInit{
       navigator.geolocation.getCurrentPosition((position: GeolocationPosition) => {
         if (position) {
           this.location = {lat: position.coords.latitude, long: position.coords.longitude};
-          this.store.dispatch({ type: SET_LOCATION, payload: this.location});
-          forkJoin([
-            this.weatherService.getLocationDetails(this.location.lat, this.location.long),
-            this.weatherService.getAllData(this.location.lat, this.location.long)
-          ]).subscribe(result => {
-            if (result[0]) {
-              const locationResult = result[0];
-              if (locationResult?.results?.length > 0 && locationResult.results[0].address_components) {
-                const geocode = new Geocode(locationResult.results[0].address_components);
-                this.store.dispatch({ type: SET_GEOCODE, payload: geocode});
-              }
-            }
-            if (result[1]) {
-              this.store.dispatch({ type: SET_WEATHER, payload: result[1]});
-            }
-          });
+          this.loadDetails();
         }
+      }, () => {
+        this.location = {lat: -37.8136, long: 144.9631};
+        this.loadDetails();
       });
     }
+  }
+  loadDetails(): void {
+    this.store.dispatch({ type: SET_LOCATION, payload: this.location});
+    forkJoin([
+      this.weatherService.getLocationDetails(this.location.lat, this.location.long),
+      this.weatherService.getAllData(this.location.lat, this.location.long)
+    ]).subscribe(result => {
+      if (result[0]) {
+        const locationResult = result[0];
+        if (locationResult?.results?.length > 0 && locationResult.results[0].address_components) {
+          const geocode = new Geocode(locationResult.results[0].address_components);
+          this.store.dispatch({ type: SET_GEOCODE, payload: geocode});
+        }
+      }
+      if (result[1]) {
+        this.store.dispatch({ type: SET_WEATHER, payload: result[1]});
+      }
+    });
   }
 }

@@ -3,6 +3,7 @@ import {select, Store} from '@ngrx/store';
 import {selectDateSelection, selectGeocode, selectWeather} from '../state/app-selector';
 import {BreakpointObserver} from '@angular/cdk/layout';
 import {UtilityService} from '../service/utility.service';
+import {Weather} from '../model/weather.model';
 
 @Component({
   selector: 'app-current-weather',
@@ -31,6 +32,13 @@ export class CurrentWeatherComponent implements OnInit {
   }
 
   ngOnInit(): void {
+  }
+  getUrl(weather: Weather, index: number, appendString: string): string {
+    if (!weather.daily || weather.daily.length < index || weather.daily[index]?.weather.length < 1) {
+      return '';
+    }
+
+    return 'http://openweathermap.org/img/wn/' + weather.daily[index]?.weather[0].icon + appendString;
   }
 
 }
