@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {select, Store} from '@ngrx/store';
-import {selectWeather} from '../state/app-selector';
-import * as moment from 'moment';
+import {selectDateSelection, selectWeather} from '../state/app-selector';
+import {UtilityService} from '../service/utility.service';
+import {SET_DATE_SELECTION} from '../state/date-seleection-reducer';
 
 @Component({
   selector: 'app-daily-forecast',
@@ -11,23 +12,17 @@ import * as moment from 'moment';
 export class DailyForecastComponent implements OnInit {
 
   weather$ = this.store.pipe(select(selectWeather));
+  dateSelection$ = this.store.pipe(select(selectDateSelection));
 
   constructor(
-    private store: Store
+    private store: Store,
+    public utilityService: UtilityService
   ) { }
 
   ngOnInit(): void {
   }
 
-  getDay(dt: number, offset: number): string {
-    const date = moment.unix(dt);
-    if (date.format('DDD') === moment().format('DDD')) {
-      return 'Today';
-    }
-    return date.format('ddd');
-  }
-
-  getDate(dt: number, offset: number): string {
-    return moment.unix(dt).format('MMM D');
+  selectDate(index: number): void {
+    this.store.dispatch({type: SET_DATE_SELECTION, payload: index});
   }
 }

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {select, Store} from '@ngrx/store';
 import {selectWeather} from '../state/app-selector';
-import * as moment from 'moment';
+import {UtilityService} from '../service/utility.service';
 @Component({
   selector: 'app-hourly-forecast',
   templateUrl: './hourly-forecast.component.html',
@@ -12,17 +12,10 @@ export class HourlyForecastComponent implements OnInit {
   weather$ = this.store.pipe(select(selectWeather));
 
   constructor(
-    private store: Store
+    private store: Store,
+    public utilityService: UtilityService
   ) { }
-
   ngOnInit(): void {
-  }
-
-  getHour(dt: number, offset: number): string {
-    return moment.unix(dt).format('HH:mm');
-  }
-  getRounded(temp: number): number {
-    return Math.round(temp);
   }
 
 }

@@ -2,14 +2,14 @@
   <div *ngFor="let hour of weather.hourly">
     <div class="margin-5">
       <div>
-        {{getHour(hour.dt, weather.timezoneOffset)}}
+        {{utilityService.getHour(hour.dt)}}
       </div>
       <div>
-        <img class="small-icon" [src]="'http://openweathermap.org/img/wn/' + hour.weather[0].icon + '@2x.png'">
+        <img class="small-icon" [alt]="hour.weather[0].description" [src]="'http://openweathermap.org/img/wn/' + hour.weather[0].icon + '@2x.png'">
       </div>
       <div>
         <div>
-          {{getRounded(hour.temp)}}°
+          {{utilityService.getRoundValue(hour.temp)}} °
         </div>
       </div>
     </div>

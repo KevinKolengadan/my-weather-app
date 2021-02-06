@@ -11,6 +11,7 @@ import {locationReducer} from './state/location-reducer';
 import {weatherReducer} from './state/weather-reducer';
 import {HttpClientModule} from '@angular/common/http';
 import {geocodeReducer} from './state/geocode-reducer';
+import {dateSelectionReducer} from './state/date-seleection-reducer';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import {geocodeReducer} from './state/geocode-reducer';
     StoreModule.forRoot({
       loc: locationReducer,
       weather: weatherReducer,
+      dateSelection: dateSelectionReducer,
       geocode: geocodeReducer
     })
   ],

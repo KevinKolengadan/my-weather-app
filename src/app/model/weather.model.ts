@@ -60,6 +60,7 @@ export interface Daily {
   feels_like: FeelsLike;
   humidity: number;
   pop: number;
+  rain: number;
   pressure: number;
   sunrise: number;
   sunset: number;

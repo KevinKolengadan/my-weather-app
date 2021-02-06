@@ -1,9 +1,8 @@
-<div *ngIf="{geocode: geocode$ | async, weather: weather$ | async} as data">
+<div *ngIf="{geocode: geocode$ | async, weather: weather$ | async, index: dateSelection$ | async} as data">
 
-  <div class="container" >
+  <div class="container" *ngIf="data.weather">
     <div class="right-side">
-
-      <img [src]="'http://openweathermap.org/img/wn/' + data.weather.current.weather[0].icon + '@4x.png'">
+      <img [src]="'http://openweathermap.org/img/wn/' + data.weather.daily[data.index].weather[0].icon + '@4x.png'">
       <h1><b>{{data.geocode.locality}}</b>
         <span class="normal">
           <span *ngIf="data.geocode.locality && data.geocode.administrativeAreaLevel1">, </span>
@@ -11,18 +10,25 @@
       </h1>
       <div *ngIf="hideLeftSide">
         <div>
-          <span class="large">{{data.weather.current.temp}}°</span>
+          <span class="large" *ngIf="data.index==0">{{utilityService.getRoundValue(data.weather.current.temp)}}°</span>
+          <span class="large" *ngIf="data.index!=0">{{utilityService.getDay(data.weather.daily[data.index].dt)}}, {{utilityService.getDate(data.weather.daily[data.index].dt)}}</span>
           <div class="small">
-            <span class="capitalize">{{data.weather.current.weather[0].description}}</span> {{data.weather.daily[0].temp.min}}°/{{data.weather.daily[0].temp.max}}°</div>
+            <span class="capitalize">{{data.weather.daily[data.index].weather[0].description}}</span>
+            {{utilityService.getRoundValue(data.weather.daily[0].temp.min)}}°/
+            {{utilityService.getRoundValue(data.weather.daily[0].temp.max)}}°</div>
         </div>
       </div>
     </div>
     <div *ngIf="!hideLeftSide">
       <div>
-        <span class="large">{{data.weather.current.temp}}°</span>
-        <img class="small-icon" [src]="'http://openweathermap.org/img/wn/' + data.weather.current.weather[0].icon + '@2x.png'">
+          <span *ngIf="data.index==0" class="large">{{utilityService.getRoundValue(data.weather.current.temp)}}°</span>
+        <span class="large" *ngIf="data.index!=0">{{utilityService.getDay(data.weather.daily[data.index].dt)}}, {{utilityService.getDate(data.weather.daily[data.index].dt)}}</span>
+        <img class="small-icon" [src]="'http://openweathermap.org/img/wn/' + data.weather.daily[data.index].weather[0].icon + '@2x.png'">
         <div class="small">
-          <span class="capitalize">{{data.weather.current.weather[0].description}}</span> {{data.weather.daily[0].temp.min}}°/{{data.weather.daily[0].temp.max}}°</div>
+          <span class="capitalize">{{data.weather.daily[data.index].weather[0].description}}</span>
+          {{utilityService.getRoundValue(data.weather.daily[data.index].temp.min)}}°/
+          {{utilityService.getRoundValue(data.weather.daily[data.index].temp.max)}}°
+        </div>
       </div>
     </div>
   </div>
