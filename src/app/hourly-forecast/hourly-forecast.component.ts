@@ -4,6 +4,10 @@ import {selectWeather} from '../state/app-selector';
 import {UtilityService} from '../service/utility.service';
 import {SET_HOUR_SELECTION} from '../state/hour-selection-reducer';
 import * as moment from 'moment';
+
+/**
+ * Component to show the hourly forecsat for today
+ */
 @Component({
   selector: 'app-hourly-forecast',
   templateUrl: './hourly-forecast.component.html',

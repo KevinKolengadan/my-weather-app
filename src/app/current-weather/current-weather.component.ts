@@ -5,6 +5,9 @@ import {BreakpointObserver} from '@angular/cdk/layout';
 import {UtilityService} from '../service/utility.service';
 import {Weather} from '../model/weather.model';
 
+/**
+ * Component to show the overall weather for the day
+ */
 @Component({
   selector: 'app-current-weather',
   templateUrl: './current-weather.component.html',
@@ -22,6 +25,7 @@ export class CurrentWeatherComponent implements OnInit {
     private breakpointObserver: BreakpointObserver,
     public utilityService: UtilityService
   ) {
+    //  logic to shift the orientation according to screen size change
     const layoutChanges = breakpointObserver.observe([
       '(min-width: 860px)',
     ]);
@@ -33,6 +37,13 @@ export class CurrentWeatherComponent implements OnInit {
 
   ngOnInit(): void {
   }
+
+  /**
+   * Function to get the image from open weather map
+   * @param weather Weather Details
+   * @param index Index selected
+   * @param appendString Size of the image
+   */
   getUrl(weather: Weather, index: number, appendString: string): string {
     if (!weather.daily || weather.daily.length < index || weather.daily[index]?.weather.length < 1) {
       return '';

@@ -9,6 +9,9 @@ import {Observable} from 'rxjs';
 import {map} from 'rxjs/operators';
 import * as pluginDataLabels from 'chartjs-plugin-datalabels';
 
+/**
+ * Component to show the daily forecast for the current period
+ */
 @Component({
   selector: 'app-daily-forecast',
   templateUrl: './daily-forecast.component.html',

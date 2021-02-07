@@ -3,6 +3,9 @@ import {select, Store} from '@ngrx/store';
 import {selectDateSelection, selectWeather} from '../state/app-selector';
 import {UtilityService} from '../service/utility.service';
 
+/**
+ * Component to display other weather details for the selected date
+ */
 @Component({
   selector: 'app-weather-details',
   templateUrl: './weather-details.component.html',
