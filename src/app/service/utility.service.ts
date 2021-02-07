@@ -59,7 +59,7 @@ export class UtilityService {
     } else if (uvi < 8) {
       return 'High';
     } else if (uvi < 11) {
-      return 'High';
+      return 'Very High';
     }
     return 'Extreme';
   }

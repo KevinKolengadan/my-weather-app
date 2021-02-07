@@ -4,7 +4,9 @@ export interface Weather {
   hourly?: Hourly[];
   minutely?: Minutely[];
   timezone?: string;
-  timezoneOffset?: number;
+  timezone_offset?: number;
+  lat?: number;
+  lon?: number;
 
 }
 
@@ -38,6 +40,7 @@ export interface Hourly {
   weather: CurrentWeather[];
   wind_deg: number;
   wind_speed: number;
+  pop: number;
 }
 
 export interface Minutely {
@@ -60,7 +63,7 @@ export interface Daily {
   feels_like: FeelsLike;
   humidity: number;
   pop: number;
-  rain: number;
+  rain?: number;
   pressure: number;
   sunrise: number;
   sunset: number;
