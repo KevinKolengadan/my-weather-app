@@ -21,9 +21,7 @@ export class DailyForecastComponent implements OnInit {
   lineChartData$: Observable<ChartDataSets[]> = this.weather$.pipe(map(weather => {
     const chartData: ChartDataSets[] = [
       { data: [], hideInLegendAndTooltip: true},
-      { data: [], hideInLegendAndTooltip: true},
-      { data: []},
-      { data: []}
+      { data: [], hideInLegendAndTooltip: true}
     ];
     const minData: number[] = [];
     const maxData: number[] = [];
@@ -110,6 +108,10 @@ export class DailyForecastComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  /**
+   * Function to select a date to show more details of the date
+   * @param index of the date from today
+   */
   selectDate(index: number): void {
     this.store.dispatch({type: SET_DATE_SELECTION, payload: index});
   }

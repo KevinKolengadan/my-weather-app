@@ -7,6 +7,10 @@ export class Geocode {
   country: string;
   postCode: string;
 
+  /**
+   * Constructing the geocode model which contains locality details
+   * @param addressComponents is an array of objects giving detailed information of the address
+   */
   constructor(addressComponents: AddressComponent[]) {
     addressComponents.map(addressComponent => {
       if (!(addressComponent.types?.length > 0)) {

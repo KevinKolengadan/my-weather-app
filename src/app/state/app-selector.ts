@@ -8,8 +8,8 @@ export interface AppState {
   };
   weather: Weather;
   geocode: Geocode;
-  dateSelection: number;
-  hourSelection: string;
+  dateSelection: number; // to store the index of the date selected
+  hourSelection: string; // to store the current hour selected
 }
 
 export const selectWeather = (state: AppState) => state.weather;

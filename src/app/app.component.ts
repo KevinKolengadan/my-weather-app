@@ -6,7 +6,7 @@ import {forkJoin} from 'rxjs';
 import {Geocode} from './model/geocode.model';
 import {SET_GEOCODE} from './state/geocode-reducer';
 import {SET_WEATHER} from './state/weather-reducer';
-import {selectHourSelection} from './state/app-selector';
+import {selectDateSelection, selectHourSelection} from './state/app-selector';
 import * as moment from 'moment';
 
 @Component({
@@ -17,6 +17,7 @@ import * as moment from 'moment';
 export class AppComponent implements OnInit{
 
   hourSelection$ = this.store.pipe(select(selectHourSelection));
+  dateSelection$ = this.store.pipe(select(selectDateSelection));
   title = 'my-weather-app';
   location: {
     lat: number,
@@ -40,6 +41,11 @@ export class AppComponent implements OnInit{
   ngOnInit(): void {
     this.getLocation();
   }
+
+  /**
+   * Update the background according to the hour selected
+   * @param hour selected
+   */
   setBackground(hour: string): string {
     if (!hour) {
       hour = moment().format('H');
@@ -47,6 +53,10 @@ export class AppComponent implements OnInit{
     const index = Number(hour);
     return this.colors[index];
   }
+
+  /**
+   * Ask user to allow location share to the webapp. By default, location selected is Melbourne CBD
+   */
   getLocation(): void {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition((position: GeolocationPosition) => {
@@ -60,6 +70,10 @@ export class AppComponent implements OnInit{
       });
     }
   }
+
+  /**
+   * Call both Open Weather Map API as well as Google Map API to get the relevant details for loading the weather forecast
+   */
   loadDetails(): void {
     this.store.dispatch({ type: SET_LOCATION, payload: this.location});
     forkJoin([

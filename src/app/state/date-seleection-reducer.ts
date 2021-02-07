@@ -1,5 +1,3 @@
-import {Geocode} from '../model/geocode.model';
-
 export const initialState = 0;
 export const SET_DATE_SELECTION = 'SET_DATE_SELECTION';
 
