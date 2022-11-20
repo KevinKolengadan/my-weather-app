@@ -16,6 +16,8 @@ Angular application to show the current weather and forecast for your location u
 
 Open Weather Map API and Google Map API is used to get the details for this application
 
+Use the [link](https://weather.fotis.com.au/) for live demo!
+
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.1.4.
 
